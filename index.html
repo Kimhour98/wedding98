@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>សំបុត្រការឌីជីថល - Digital Wedding Invitation</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300..700;1,300..700&family=Moul&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --sage-dark: #2d3b2e;
+      --sage-base: #4a5d4c;
+      --sage-mid: #5c725f;
+      --silver-bright: #ffffff;
+      --silver-shine: linear-gradient(135deg, #ffffff 0%, #d8e2d9 25%, #ffffff 50%, #b0c2b2 75%, #ffffff 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #121813;
+      font-family: 'Kantumruy Pro', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 440px;
+      perspective: 1200px;
+    }
+
+    .card-wrapper {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(155deg, var(--sage-mid) 0%, var(--sage-base) 50%, var(--sage-dark) 100%);
+      border-radius: 16px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ---------------- ផ្នែក FRONT COVER ---------------- */
+    .card-cover {
+      padding: 40px 25px;
+      text-align: center;
+      position: relative;
+      min-height: 580px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      transition: opacity 0.6s ease;
+    }
+
+    .envelope-top-flap {
+      border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+      padding-bottom: 15px;
+      width: 100%;
+    }
+
+    .monogram-silver {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--silver-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .date-badge-silver {
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      color: #e5ede6;
+      margin-top: 6px;
+      font-weight: 500;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .wax-seal-container {
+      margin: 20px 0;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .wax-seal {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffffff 0%, #c5d4c7 40%, #899e8b 100%);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 3px 6px rgba(255,255,255,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 6px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    .wax-seal:hover {
+      transform: scale(1.08);
+    }
+
+    .wax-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px dashed #3a4b3d;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #232e24;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .seal-icon {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    .seal-text {
+      font-size: 0.55rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .click-hint {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #f0f5f1;
+      font-weight: 500;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+      animation: bounce 1.5s infinite;
+    }
+
+    .khmer-title-silver {
+      font-family: 'Moul', serif;
+      font-size: 1.45rem;
+      background: var(--silver-shine);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .english-subtitle-silver {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: #e5ede6;
+      letter-spacing: 1px;
+    }
+
+    .invite-quote-silver {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: #f2f7f3;
+      margin-top: 15px;
+      font-weight: 400;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    /* ---------------- ផ្នែក INSIDE CARD ---------------- */
+    .card-inside {
+      display: none !important;
+      padding: 35px 22px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .card-wrapper.open .card-cover {
+      display: none !important;
+    }
+
+    .card-wrapper.open .card-inside {
+      display: block !important;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .inside-header {
+      margin-bottom: 20px;
+    }
+
+    .khmer-header-title {
+      font-family: 'Moul', serif;
+      color: #ffffff;
+      font-size: 1.25rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .english-header-title {
+      font-family: 'Playfair Display', serif;
+      color: #dbe5dc;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+
+    .couple-photos-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin: 15px 0 20px 0;
+    }
+
+    .photo-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 48%;
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+
+    .photo-box span {
+      margin-top: 6px;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .names-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 15px 0;
+    }
+
+    .groom-side, .bride-side {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .role {
+      font-size: 0.8rem;
+      color: #c0d4c2;
+    }
+
+    .name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 3px;
+    }
+
+    .heart-separator {
+      font-size: 1.2rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    .divider-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      margin: 20px 0;
+    }
+
+    .event-details {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .detail-block {
+      background: rgba(0, 0, 0, 0.25);
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .detail-block .icon {
+      font-size: 1.3rem;
+      margin-bottom: 3px;
+    }
+
+    .detail-block .label {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .detail-block .sub-label {
+      color: #b8ccba;
+      font-size: 0.8rem;
+    }
+
+    .countdown-title {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #e5ede6;
+    }
+
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px 0 25px;
+    }
+
+    .time-box {
+      background: rgba(0, 0, 0, 0.35);
+      padding: 8px 12px;
+      border-radius: 8px;
+      min-width: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .time-box small {
+      font-size: 0.7rem;
+      color: #b8ccba;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-map {
+      background: linear-gradient(135deg, #ffffff, #b0c2b2);
+      color: #1e261f;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .btn-close {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #ffffff;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 0 0 rgba(255,255,255,0); }
+      50% { box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 20px rgba(255,255,255,0.6); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+    <div class="card-wrapper" id="cardWrapper">
+      
+      <!-- ផ្នែកខាងក្រៅ៖ ស្រោមសំបុត្រ (Cover) -->
+      <div class="card-cover" id="cardCover">
+        <div class="envelope-top-flap">
+          <div class="monogram-silver">
+            <span class="m-letter">ស្ពៃជ្រក់</span>
+            <span class="m-amp">&amp;</span>
+            <span class="m-letter">អុីម</span>
+          </div>
+          <div class="date-badge-silver">09 . MAY . 2027</div>
+        </div>
+
+        <div class="wax-seal-container" onclick="openWeddingCard()">
+          <div class="wax-seal">
+            <div class="wax-inner">
+              <span class="seal-icon">囍</span>
+              <span class="seal-text">PRESS TO OPEN</span>
+            </div>
+          </div>
+          <div class="click-hint">ចុចលើត្រាប្រាក់ដើម្បីបើកសំបុត្រ</div>
+        </div>
+
+        <div class="cover-titles">
+          <h1 class="khmer-title-silver">សិរីមង្គលអាពាហ៍ពិពាហ៍</h1>
+          <p class="english-subtitle-silver">The Wedding Invitation</p>
+        </div>
+
+        <div class="invite-quote-silver">
+          សូមគោរពអញ្ជើញ ឯកឧត្តម លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា<br>
+          ចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស ក្នុងពិធីពិសាភោជនាហារ
+        </div>
+      </div>
+
+      <!-- ផ្នែកខាងក្នុង៖ សន្លឹកសំបុត្រការ (Unfolded Inside Card) -->
+      <div class="card-inside" id="cardInside">
+        
+        <div class="inside-header">
+          <div class="khmer-header-title">សិរីសួស្តី អាពាហ៍ពិពាហ៍</div>
+          <div class="english-header-title">Wedding Celebration</div>
+        </div>
+
+        <!-- រូបភាពកូនកំលោះ និងកូនក្រមុំដាក់ទន្ទឹមគ្នា -->
+        <div class="couple-photos-container">
+          <div class="photo-box">
+            <img src="groom.jpg" alt="Groom Photo">
+            <span>កូនកំលោះ ស្ពៃជ្រក់</span>
+          </div>
+          <div class="photo-box">
+            <img src="bride.jpg" alt="Bride Photo">
+            <span>កូនក្រមុំ អុីម</span>
+          </div>
+        </div>
+
+        <!-- ឈ្មោះកូនកំលោះ និងកូនក្រមុំ -->
+        <div class="names-container">
+          <div class="groom-side">
+            <span class="role">កូនកំលោះ</span>
+            <span class="name">លោក ជ្រក់</span>
+          </div>
+          <div class="heart-separator">❤️</div>
+          <div class="bride-side">
+            <span class="role">កូនក្រមុំ</span>
+            <span class="name">អ្នកនាង អុីម</span>
+          </div>
+        </div>
+
+        <div class="divider-line"></div>
+
+        <!-- ព័ត៌មានថ្ងៃខែ និងទីតាំង -->
+        <div class="event-details">
+          <div class="detail-block">
+            <div class="icon">📅</div>
+            <div class="label">ថ្ងៃអាទិត្យ ទី០៩ ខែឧសភា ឆ្នាំ២០២៧</div>
+            <div class="sub-label">Sunday, May 09, 2027</div>
+          </div>
+
+          <div class="detail-block">
+            <div class="icon">⏰</div>
+            <div class="label">វេលាម៉ោង ៥:០០ ល្ងាច</div>
+            <div class="sub-label">At 5:00 PM</div>
+          </div>
+
+          <div class="detail-block">
+            <div class="icon">📍</div>
+            <div class="label">អូឡោក CG</div>
+            <div class="sub-label">Olork</div>
+          </div>
+        </div>
+
+        <!-- នាឡិការាប់ថយក្រោយ -->
+        <div class="countdown-title">នៅសល់តែ</div>
+        <div class="countdown-container">
+          <div class="time-box"><span id="days">00</span><small>ថ្ងៃ</small></div>
+          <div class="time-box"><span id="hours">00</span><small>ម៉ោង</small></div>
+          <div class="time-box"><span id="minutes">00</span><small>នាទី</small></div>
+          <div class="time-box"><span id="seconds">00</span><small>វិនាទី</small></div>
+        </div>
+
+        <!-- ប៊ូតុងសកម្មភាព -->
+        <div class="action-buttons">
+          <a href="https://maps.app.goo.gl/rCTMaBPgHJuYQKuCA?g_st=ic" target="_blank" class="btn-map">🗺️ មើលទីតាំងលើ Google Maps</a>
+          <button class="btn-close" onclick="closeWeddingCard()">✉️ បត់សំបុត្រវិញ</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Background Audio -->
+  <audio id="weddingAudio" loop>
+    <source src="wedding-song.mp3" type="audio/mp3">
+    Browser របស់អ្នកមិនគាំទ្រការចាក់អូឌីយ៉ូនេះទេ។
+  </audio>
+
+  <!-- JavaScript -->
+  <script>
+    // បើកសំបុត្រការ និងចាក់ភ្លេង
+    function openWeddingCard() {
+      const cardWrapper = document.getElementById('cardWrapper');
+      cardWrapper.classList.add('open');
+
+      const audio = document.getElementById('weddingAudio');
+      audio.play().catch(error => {
+        console.log("Auto-play was prevented by browser:", error);
+      });
+    }
+
+    // បត់សំបុត្រទុកវិញ
+    function closeWeddingCard() {
+      const cardWrapper = document.getElementById('cardWrapper');
+      cardWrapper.classList.remove('open');
+      
+      // បើចង់ឱ្យភ្លេងឈប់ពេលបត់សំបុត្រវិញ អាចដកសញ្ញាសម្គាល់ចេញនៅខាងក្រោម៖
+      // const audio = document.getElementById('weddingAudio');
+      // audio.pause();
+    }
+
+    // មុខងាររាប់ថយក្រោយ (Countdown Timer - កំណត់ត្រឹម May 9, 2027)
+    const weddingDate = new Date("May 9, 2027 17:00:00").getTime();
+
+    const timer = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        document.querySelector(".countdown-container").innerHTML = "<div style='color:#fff;'>កម្មវិធីបានចាប់ផ្តើមហើយ!</div>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+      document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+      document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+      document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+    }, 1000);
+  </script>
+</body>
+</html>
